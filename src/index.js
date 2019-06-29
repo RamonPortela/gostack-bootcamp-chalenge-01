@@ -33,4 +33,14 @@ app.put('/projects/:id', (req, res) => {
   return res.status(204).send();
 });
 
+app.delete('/projects/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  const projectIndex = projects.findIndex(p => p.id === id);
+
+  projects.splice(projectIndex, 1);
+
+  return res.status(204).send();
+});
+
 app.listen(3333);
