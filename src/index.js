@@ -19,7 +19,18 @@ app.post('/projects', (req, res) => {
     tasks: [],
   });
 
-  res.status(201).send();
+  return res.status(201).send();
+});
+
+app.put('/projects/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const { title } = req.body;
+
+  const project = projects.find(p => p.id === id);
+
+  project.title = title;
+
+  return res.status(204).send();
 });
 
 app.listen(3333);
